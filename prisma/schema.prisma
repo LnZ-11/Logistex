@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js" // ✅ Ajoute le -js
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Category {
+  id          Int        @id @default(autoincrement())
+  nom         String     @unique
+  description String?
+  parentId    Int?
+  produits    Product[]
+}
+
+model Product {
+  id               Int            @id @default(autoincrement())
+  sku              String         @unique
+  barcode          String?        @unique
+  nom              String
+  description      String?
+  quantiteActuelle Int
+  seuilCritique    Int
+  prixAchat        Float
+  prixVente        Float
+  categorieId      Int
+  categorie        Category       @relation(fields: [categorieId], references: [id])
+  dateCreation     DateTime       @default(now())
+  dateMiseAJour    DateTime       @updatedAt
+  mouvementItems   StockMovementItem[]
+}
+
+model StockMovement {
+  id              Int                 @id @default(autoincrement())
+  typeMouvement   StockType
+  reference       String?
+  raison          String?
+  dateMouvement   DateTime            @default(now())
+  items           StockMovementItem[]
+}
+
+model StockMovementItem {
+  id              Int           @id @default(autoincrement())
+  mouvementId     Int
+  mouvement       StockMovement @relation(fields: [mouvementId], references: [id], onDelete: Cascade)
+  produitId       Int
+  produit         Product       @relation(fields: [produitId], references: [id])
+  quantiteChangee Int
+}
+
+enum StockType {
+  ENTREE
+  SORTIE
+  AJUSTEMENT
+}
