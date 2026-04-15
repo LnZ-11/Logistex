@@ -3,13 +3,13 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { patchProductSchema } from "../schema";
 import { z } from "zod";
-import useFetchProducts from "../hooks/useFetchProducts";
-import useUpdateProduct from "../hooks/useUpdateProduct";
+import useFetchProducts from "../hooks/global/useFetchProducts";
+import useUpdateProduct from "../hooks/global/useUpdateProduct";
 
 export default function PatchForm(){
     type FormValues = z.infer<typeof patchProductSchema>
     const {data, error, isLoading} = useFetchProducts()   
-    const updateProduct = useUpdateProduct()
+    const {updateProduct} = useUpdateProduct()
     const { register, handleSubmit, formState: { isSubmitting} } = useForm<FormValues>({
         defaultValues: {
             quantiteActuelle: undefined,

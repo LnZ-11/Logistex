@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import useFetchProducts from "../hooks/useFetchProducts";
+import useFetchProducts from "../hooks/global/useFetchProducts";
 import Card from "./card";
 
 export default function CardBoard() {

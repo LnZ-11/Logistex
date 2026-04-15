@@ -1,8 +1,6 @@
 'use client'
-import useFetchCategories from "../hooks/useFetchCategories"
-import { productFindSchema } from "../schema"
-import { z } from "zod"
-import useFetchProducts from "../hooks/useFetchProducts"
+import useFetchCategories from "../hooks/global/useFetchCategories"
+import useFetchProducts from "../hooks/global/useFetchProducts"
 
 
 export default function productSorted() {
