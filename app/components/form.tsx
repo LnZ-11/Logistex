@@ -1,17 +1,16 @@
 "use client"
 
-import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { productSchema } from "../schema";
 import { z } from "zod";
-import useFetchCategories from "../hooks/useFetchCategories";
-import useAddProduct from "../hooks/useAddProduct";
+import useFetchCategories from "../hooks/global/useFetchCategories";
+import useAddProduct from "../hooks/global/useAddProduct";
 
 export default function Form(){
     
     type FormValues = z.infer<typeof productSchema>
     const {data, error, isLoading} = useFetchCategories()
-    const addProduct = useAddProduct()    
+    const {addProduct} = useAddProduct()    
     const { register, handleSubmit, formState: { isSubmitting} } = useForm<FormValues>({
         defaultValues: {
             sku: '',
