@@ -158,7 +158,141 @@ async function main() {
         data: { nom: 'SSD', parentId: catPcsOrdinateur.id },
     });
 
+    const rawProducts = [
+        {
+            "id": 39,
+            "sku": "ACC-AUD-JED-553",
+            "barcode": "6974316463009",
+            "nom": "Jedel S-553",
+            "description": "Gaming Baffle baff usb couleur",
+            "quantiteActuelle": 4,
+            "seuilCritique": 0,
+            "prixAchat": 900,
+            "prixVente": 1600,
+            "categorieId": 4,
+            "dateCreation": "2026-04-10T10:58:55.985Z",
+            "dateMiseAJour": "2026-04-10T10:58:55.985Z"
+        },
+        {
+            "id": 41,
+            "sku": "ACC-DIV-PAP-NORM",
+            "barcode": "6133746002619",
+            "nom": "Noram Ram 500 Feuilles A4",
+            "description": "papier A4 Ram",
+            "quantiteActuelle": 15,
+            "seuilCritique": 3,
+            "prixAchat": 480,
+            "prixVente": 580,
+            "categorieId": 8,
+            "dateCreation": "2026-04-10T11:05:15.930Z",
+            "dateMiseAJour": "2026-04-10T11:05:15.930Z"
+        },
+        {
+            "id": 1,
+            "sku": "ENT-TNR-RCC-435A",
+            "barcode": "6936809796418",
+            "nom": "RC Cartridge 435A/436A/278A/285A",
+            "description": "Toner Laser Canon LBP-6200, MF-4410, MF-4430, MF-4450, MF-4550, MF-4570, MF-4580, MF-4730, MF-4750, MF-4780, MF-4870, MF-4890. LBP-6000, LBP-6020, LBP-6030, MF-3010. LaserJet Pro M1210/M1212nf/P1102/P1102w.",
+            "quantiteActuelle": 16,
+            "seuilCritique": 3,
+            "prixAchat": 900,
+            "prixVente": 1400,
+            "categorieId": 9,
+            "dateCreation": "2026-04-09T23:00:39.575Z",
+            "dateMiseAJour": "2026-04-10T11:09:24.680Z"
+        },
+        {
+            "id": 2,
+            "sku": "ENT-TNR-STI-450A",
+            "barcode": "6950840639318",
+            "nom": "Star Ink 435A/436A/278A/285A",
+            "description": "Toner 435A/436A/278A/285A Cartouche Toner Laser Canon et HP LaserJet Pro P1102/P1102w/M1132.",
+            "quantiteActuelle": 3,
+            "seuilCritique": 0,
+            "prixAchat": 900,
+            "prixVente": 1400,
+            "categorieId": 9,
+            "dateCreation": "2026-04-09T23:03:46.486Z",
+            "dateMiseAJour": "2026-04-10T11:09:49.402Z"
+        },
+        {
+            "id": 36,
+            "sku": "ENT-TNR-RCC-TN1000",
+            "barcode": "6936904790683",
+            "nom": "RC Cartridge TN1000/1030/1040/1050/1060/1070/1075",
+            "description": "Toner Cartouche Laser Brother HL-1110, HL-1112, HL-1210W, DCP-1510, MFC-1810.",
+            "quantiteActuelle": 4,
+            "seuilCritique": 3,
+            "prixAchat": 750,
+            "prixVente": 1400,
+            "categorieId": 9,
+            "dateCreation": "2026-04-09T23:19:13.551Z",
+            "dateMiseAJour": "2026-04-12T16:21:00.344Z"
+        },
+        {
+            "id": 40,
+            "sku": "ACC-AUD-JED-526",
+            "barcode": "6974316462743",
+            "nom": "Jedel S-526",
+            "description": "Baffle baff gaming couleur usb",
+            "quantiteActuelle": 4,
+            "seuilCritique": 0,
+            "prixAchat": 1100,
+            "prixVente": 1900,
+            "categorieId": 4,
+            "dateCreation": "2026-04-10T11:00:49.206Z",
+            "dateMiseAJour": "2026-04-13T11:37:25.775Z"
+        },
+        {
+            "id": 38,
+            "sku": "IMP-INK-CAN-G3410",
+            "barcode": "4549292095487",
+            "nom": "Canon Pixma G3410",
+            "description": "imprimante canon pixma",
+            "quantiteActuelle": 3,
+            "seuilCritique": 0,
+            "prixAchat": 39900,
+            "prixVente": 47000,
+            "categorieId": 12,
+            "dateCreation": "2026-04-09T23:24:30.058Z",
+            "dateMiseAJour": "2026-04-13T11:59:16.446Z"
+        },
+        {
+            "id": 35,
+            "sku": "ENT-TNR-IPR-2612A",
+            "barcode": "6936904796159",
+            "nom": "Ink Print RC 2612A/C103/503/703/FX9/10/L90/C104",
+            "description": "Laser 2612A/C103/503/703/FX9/10/L90/C104. HP LaserJet P1102, P1005, M1132 MFP.",
+            "quantiteActuelle": 3,
+            "seuilCritique": 3,
+            "prixAchat": 950,
+            "prixVente": 1500,
+            "categorieId": 9,
+            "dateCreation": "2026-04-09T23:15:04.100Z",
+            "dateMiseAJour": "2026-04-13T12:00:48.362Z"
+        },
+        {
+            "id": 37,
+            "sku": "ENT-TNR-NWL-4092A",
+            "barcode": null,
+            "nom": "New Light 4092A/EP22",
+            "description": "New Light Laser Cartouche 4092A/EP22 Tonner toner",
+            "quantiteActuelle": 1,
+            "seuilCritique": 0,
+            "prixAchat": 950,
+            "prixVente": 1500,
+            "categorieId": 9,
+            "dateCreation": "2026-04-09T23:22:17.939Z",
+            "dateMiseAJour": "2026-04-13T12:00:59.948Z"
+        }
+    ]
 
+    console.log("🚀 Injection des produits...");
+    for (const prod of rawProducts) {
+        await prisma.product.create({
+            data: prod
+        });
+    }
 
     console.log('Base de données remplie avec succès ! ✅');
 }
